@@ -13,18 +13,6 @@ It is based on an [earlier article]( http://www.networkworld.com/article/2285193
 Don't run this on OSX due to its old OpenSSL library. It does work on a Linux system, e.g. using the provided Vagrant file:
 
 1. Add `cc.service.cf.internal` as an additional alias of localhost to `/etc/hosts`
-1. [Install Ruby 2.4.1](https://www.brightbox.com/docs/ruby/ubuntu/) using BrightBox's Ubuntu repository:
-
-  In short:
-
-  ```bash
-  sudo apt-get install software-properties-common
-  sudo apt-get update
-  sudo apt-add-repository ppa:brightbox/ruby-ng
-  sudo apt-get install ruby2.4
-  sudo ruby-switch --set ruby2.4
-  ```
-
 1. Start the server
 
   ```bash
