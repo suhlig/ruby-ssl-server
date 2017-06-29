@@ -1,7 +1,5 @@
 #!/usr/local/bin/ruby
 
-# based on http://www.networkworld.com/article/2285193/infrastructure-management/creating-an-ssl-certificate-for-webrick.html
-
 require 'webrick'
 require 'webrick/https'
 require 'openssl'
@@ -18,21 +16,7 @@ s = WEBrick::HTTPServer.new(
   :SSLCACertificateFile => 'certificates/ca.crt',
   :SSLCertificate => cert,
   :SSLPrivateKey => key,
-  :SSLCertName => [ [ 'CN', 'cc.service.cf.internal' ] ]
+  :SSLCertName => [ [ 'CN', 'cc.service.cf.internal' ] ] # must match the server name (both physically and as CN in the server certificate)
 )
 
 s.start
-
-__END__
-
-Test on a Linux system:
-
-curl https://cc.service.cf.internal:8443/ \
-    --cacert certificates/ca.crt \
-    --cert certificates/bits-service.crt \
-    --key certificates/bits-service.key
-
-This one must fail due to VERIFY_FAIL_IF_NO_PEER_CERT:
-
-curl https://cc.service.cf.internal:8443/ \
-    --cacert certificates/ca.crt
