@@ -1,4 +1,4 @@
-# Ruby SSL Server with Client Certificate Authentication
+# Spike on a Ruby SSL Server with Client Certificate Authentication
 
 This is, as part of the Cloud Foundry [bits-service](https://github.com/cloudfoundry-incubator/bits-service), a spike on a simple Ruby web server that uses SSL certificates to authenticate clients on the TLS layer.
 
@@ -36,16 +36,15 @@ Don't run this on OSX due to its old OpenSSL library. It does work on a Linux sy
 
   ```bash
   curl https://cc.service.cf.internal:8443/ \
-      --cacert certificates/ca.crt \
-      --cert certificates/bits-service.crt \
+      --cacert certificates/ca.crt          \
+      --cert certificates/bits-service.crt  \
       --key certificates/bits-service.key
   ```
 
-  This one must fail due to VERIFY_FAIL_IF_NO_PEER_CERT:
+  This one must fail due to `VERIFY_FAIL_IF_NO_PEER_CERT`:
 
   ```bash
-  curl https://cc.service.cf.internal:8443/ \
-    --cacert certificates/ca.crt
+  curl https://cc.service.cf.internal:8443/ --cacert certificates/ca.crt
   ```
 
 # Certificate Rotation
